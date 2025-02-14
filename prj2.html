@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <style>
+      :root {
+        --primary: #f1b947;
+      }
+      [popover]:popover-open {
+        opacity: 1;
+      }
+
+      [popover] {
+        opacity: 0;
+        transition: all 0.25s allow-discrete;
+      }
+
+      @starting-style {
+        [popover]:popover-open {
+          opacity: 0;
+        }
+      }
+
+      menu {
+        filter: blur(0px);
+        transform: translateY(0px);
+        transition: all 0.5s allow-discrete;
+      }
+      @starting-style {
+        menu {
+          filter: blur(1px);
+          transform: translateY(2.5px);
+        }
+      }
+
+      .scroll-out {
+        animation: fade-out linear;
+        animation-timeline: view(block 0% max(calc(100% - 100px), 90%));
+      }
+      .scroll-in {
+        animation: fade-in linear;
+        animation-timeline: view(block max(calc(100% - 100px), 90%) 0%);
+      }
+      @keyframes fade-out {
+        from {
+          filter: blur(0px);
+          transform: translateY(0);
+          opacity: 1;
+        }
+        50% {
+          filter: blur(1px);
+          transform: translateY(-2.5px);
+          opacity: 0;
+        }
+        to {
+          filter: blur(1px);
+          transform: translateY(-2.5px);
+          opacity: 0;
+        }
+      }
+      @keyframes fade-in {
+        from {
+          filter: blur(1px);
+          transform: translateY(2.5px);
+          opacity: 0;
+        }
+        50% {
+          filter: blur(1px);
+          transform: translateY(2.5px);
+          opacity: 0;
+        }
+        to {
+          filter: blur(0px);
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      ::selection {
+        background: var(--primary);
+        color: rgb(255, 255, 255);
+      }
+    </style>
+    <title>ahmad's resume | prj2</title>
+  </head>
+  <body>
+    <main class="mx-auto w-full max-w-xl pb-36">
+      <header class="w-full flex justify-between items-center gap-6 p-6">
+        <a
+          href="resume.html"
+          class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+          aria-label="Home"
+        >
+          <img src="logo.svg" class="w-12 h-12" alt="Whiskers" />
+        </a>
+        <button
+          class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer font-semibold"
+          popovertarget="navigation-menu"
+          aria-label="Open menu"
+        >
+          $><span class="animate-pulse">_</span>
+        </button>
+        <dialog id="navigation-menu" popover>
+          <nav
+            class="fixed left-0 top-0 h-dvh w-full bg-white font-semibold"
+            aria-label="Navigation menu"
+          >
+            <menu
+              class="mx-auto w-full max-w-lg flex justify-between gap-6 p-6"
+            >
+              <li>
+                <menu>
+                  <li>
+                    <a
+                      href="prj1.html"
+                      class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+                      autofocus
+                      >prj1</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="prj2.html"
+                      class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+                      autofocus
+                      >prj2</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://github.com/ahmadgaz"
+                      target="_blank"
+                      class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+                      >github</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://ahmadgaz.hashnode.dev/"
+                      target="_blank"
+                      class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+                      >blog</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="transcript.html"
+                      class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+                      >transcript</a
+                    >
+                  </li>
+                </menu>
+              </li>
+              <li>
+                <button
+                  class="w-fit h-fit transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+                  popovertarget="navigation-menu"
+                  aria-label="Close menu"
+                >
+                  x
+                </button>
+              </li>
+            </menu>
+          </nav>
+        </dialog>
+      </header>
+      <section class="flex flex-col gap-3 p-6">
+        <div class="scroll-out w-full">
+          <div class="scroll-in flex justify-between items-start gap-3">
+            <h2 class="flex flex-col text-xl font-semibold">
+              prj1: Ultra Violet Text
+              <span class="text-md text-slate-500">Apr 2024</span>
+            </h2>
+
+            <a
+              href="https://devpost.com/software/ultraviolettext"
+              target="_blank"
+              class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+            >
+              <img
+                src="https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/20/solid/arrow-up-right.svg"
+                alt="External Link Icon"
+                class="min-w-5 w-5"
+              />
+            </a>
+          </div>
+        </div>
+        <p class="text-sm font-medium italic text-slate-500 leading-5 w-fit">
+          <span class="scroll-in">Hackathon</span>
+        </p>
+        <p>
+          I led the front-end development of a
+          <a
+            href="https://developer.chrome.com/docs/extensions/"
+            target="_blank"
+            ><strong>Chrome extension</strong></a
+          >
+          designed to detect and highlight persuasive language on webpages,
+          enhancing user awareness and interaction with digital content. My work
+          centered on building a custom <strong>HTML parser</strong> using a
+          <em>depth-first pre-order traversal algorithm</em> to efficiently
+          identify top-level tags that typically contain text. By utilizing a
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/API/NodeIterator"
+            target="_blank"
+            ><strong>NodeIterator</strong></a
+          >, I was able to perform targeted mutations on text nodes, ensuring
+          that the extension could accurately identify and process relevant
+          content. <br /><br />
+          One of the most challenging aspects of the project was tracking and
+          responding to <strong>DOM mutations</strong> in real time. Initially,
+          the extension only highlighted content from the initial page load,
+          which proved insufficient for dynamic sites that load content
+          asynchronously or feature interactive elements like paginated
+          information and expandable comments. To overcome this, I implemented a
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver"
+            target="_blank"
+            ><strong>MutationObserver</strong></a
+          >
+          to monitor changes and update highlights as new elements were
+          introduced. This approach, however, presented its own challenges.
+          Modifications triggered by the MutationObserver occasionally led to an
+          endless recursive loop, as each mutation spawned further observations.
+          I resolved this issue by constraining the mutations to only the nodes
+          that required highlighting and by checking for pre-existing
+          highlighted elements using their class names, effectively breaking the
+          recursive cycle. <br /><br />
+          In addition to solving DOM mutation challenges, I addressed complex
+          race conditions by employing a <strong>promise queue</strong> paired
+          with an <strong>event listener/subscriber system</strong> to manage
+          asynchronous updates. This strategy prevented recursive back-end API
+          calls during rapid DOM changes, ensuring that the extension remained
+          responsive. <br /><br />
+          In conclusion, this project enhanced my skills in dynamic DOM
+          manipulation.
+        </p>
+
+        <div class="scroll-out">
+          <ul class="scroll-in flex flex-wrap gap-2">
+            <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+              JavaScript
+            </li>
+            <li class="text-sm rounded-md bg-slate-200 px-2 py-1">HTML</li>
+            <li class="text-sm rounded-md bg-slate-200 px-2 py-1">CSS</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

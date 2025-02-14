@@ -1,0 +1,1327 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <style>
+      :root {
+        --primary: #f1b947;
+      }
+      [popover]:popover-open {
+        opacity: 1;
+      }
+
+      [popover] {
+        opacity: 0;
+        transition: all 0.25s allow-discrete;
+      }
+
+      @starting-style {
+        [popover]:popover-open {
+          opacity: 0;
+        }
+      }
+
+      menu {
+        filter: blur(0px);
+        transform: translateY(0px);
+        transition: all 0.5s allow-discrete;
+      }
+      @starting-style {
+        menu {
+          filter: blur(1px);
+          transform: translateY(2.5px);
+        }
+      }
+
+      .scroll-out {
+        animation: fade-out linear;
+        animation-timeline: view(block 0% max(calc(100% - 100px), 90%));
+      }
+      .scroll-in {
+        animation: fade-in linear;
+        animation-timeline: view(block max(calc(100% - 100px), 90%) 0%);
+      }
+      @keyframes fade-out {
+        from {
+          filter: blur(0px);
+          transform: translateY(0);
+          opacity: 1;
+        }
+        50% {
+          filter: blur(1px);
+          transform: translateY(-2.5px);
+          opacity: 0;
+        }
+        to {
+          filter: blur(1px);
+          transform: translateY(-2.5px);
+          opacity: 0;
+        }
+      }
+      @keyframes fade-in {
+        from {
+          filter: blur(1px);
+          transform: translateY(2.5px);
+          opacity: 0;
+        }
+        50% {
+          filter: blur(1px);
+          transform: translateY(2.5px);
+          opacity: 0;
+        }
+        to {
+          filter: blur(0px);
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      details > summary {
+        list-style-type: "+";
+      }
+
+      details[open] > summary {
+        list-style-type: "-";
+      }
+      ::selection {
+        background: var(--primary);
+        color: rgb(255, 255, 255);
+      }
+    </style>
+    <title>ahmad's resume</title>
+  </head>
+  <body>
+    <main class="mx-auto w-full max-w-xl pb-36">
+      <header class="w-full flex justify-between items-center gap-6 p-6">
+        <a
+          href="resume.html"
+          class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+          aria-label="Home"
+        >
+          <img src="logo.svg" class="w-12 h-12" alt="Whiskers" />
+        </a>
+        <button
+          class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer font-semibold"
+          popovertarget="navigation-menu"
+          aria-label="Open menu"
+        >
+          $><span class="animate-pulse">_</span>
+        </button>
+        <dialog id="navigation-menu" popover>
+          <nav
+            class="fixed left-0 top-0 h-dvh w-full bg-white font-semibold"
+            aria-label="Navigation menu"
+          >
+            <menu
+              class="mx-auto w-full max-w-lg flex justify-between gap-6 p-6"
+            >
+              <li>
+                <menu>
+                  <li>
+                    <a
+                      href="prj1.html"
+                      class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+                      autofocus
+                      >prj1</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="prj2.html"
+                      class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+                      autofocus
+                      >prj2</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="transcript.html"
+                      class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+                      >transcript</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://github.com/ahmadgaz"
+                      target="_blank"
+                      class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+                      >github</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://ahmadgaz.hashnode.dev/"
+                      target="_blank"
+                      class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+                      >blog</a
+                    >
+                  </li>
+                </menu>
+              </li>
+              <li>
+                <button
+                  class="w-fit h-fit transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+                  popovertarget="navigation-menu"
+                  aria-label="Close menu"
+                >
+                  x
+                </button>
+              </li>
+            </menu>
+          </nav>
+        </dialog>
+      </header>
+      <section class="flex max-lg:flex-col items-center gap-6 p-6">
+        <div class="relative scroll-out">
+          <img
+            src="polka.svg"
+            alt="Polka dots"
+            class="absolute -left-2 -top-2 -z-10 !animate-[spin_10s_linear_infinite] select-none max-w-20 max-h-20 min-w-20 min-h-20"
+          />
+          <img
+            src="avatar.jpg"
+            alt="Ahmad's avatar"
+            class="max-w-32 max-h-32 min-w-32 min-h-32 rounded-full"
+          />
+        </div>
+        <div class="flex flex-col flex-1 gap-3">
+          <div class="flex flex-col">
+            <h1
+              class="flex items-center scroll-out font-semibold text-xl gap-1 !opacity-40"
+            >
+              hi, i'm Ahmad
+              <img
+                src="https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/16/solid/sparkles.svg"
+                alt="Sparkles"
+                class="w-4"
+              />
+            </h1>
+            <h3 class="scroll-out">
+              <a
+                href="https://en.wikipedia.org/wiki/ENIAC"
+                target="_blank"
+                class="transition-all duration-100 ease-in-out hover:opacity-50 text-sky-600 hover:underline active:opacity-25 cursor-pointer"
+                >Computer</a
+              >
+              <span class="!opacity-40"> nerd and </span>
+              <a
+                href="https://en.wikipedia.org/wiki/Good_Vibes_(Gary_Burton_album)"
+                target="_blank"
+                class="transition-all duration-100 ease-in-out hover:opacity-50 text-sky-600 hover:underline active:opacity-25 cursor-pointer"
+                >good vibes</a
+              >
+              <span class="!opacity-40"> enthusiast </span>
+            </h3>
+          </div>
+          <p class="scroll-out">
+            <em class="font-serif"
+              >Crafting pixel perfect software experiences</em
+            >
+            and intergating magical details.
+            <br />
+            Probably centering divs rn.
+          </p>
+          <a
+            href="#contact"
+            class="transition-all scroll-out font-semibold duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer text-green-400 flex items-center gap-2"
+            >Available for hire
+            <span class="relative h-3 w-3">
+              <span
+                class="absolute h-3 w-3 !animate-ping rounded-md bg-green-400"
+              ></span>
+              <span class="absolute h-3 w-3 rounded-md bg-green-400"></span>
+            </span>
+          </a>
+          <div class="flex flex-wrap gap-2 py-1">
+            <a
+              href="#projects"
+              class="transition-all scroll-out duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer flex gap-2 w-fit rounded-full px-4 py-2 bg-white border-2 border-slate-200"
+            >
+              <img
+                src="https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/20/solid/cube-transparent.svg"
+                alt="transparent-cube"
+                class="w-5"
+              />
+              Experience</a
+            ><a
+              href="#skills"
+              class="transition-all scroll-out duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer flex gap-2 w-fit px-2 py-2"
+            >
+              Technical skills
+            </a>
+          </div>
+        </div>
+      </section>
+      <div class="py-6 scroll-out">
+        <hr class="text-slate-200 scroll-in" />
+      </div>
+      <section class="flex flex-col gap-6 p-6">
+        <video class="rounded-2xl" controls>
+          <source src="resume.webm" type="video/webm" />
+        </video>
+        <h2 class="font-semibold text-xl scroll-out">
+          <span class="scroll-in">about me</span>
+        </h2>
+        <p class="scroll-out">
+          <span class="scroll-in">
+            I'm
+            <a
+              href="https://www.linkedin.com/in/ahmad-gazali/"
+              target="_blank"
+              class="transition-all duration-100 ease-in-out hover:opacity-50 text-sky-600 hover:underline active:opacity-25 cursor-pointer"
+              >Ahmad Gazali</a
+            >. I'm a computer engineering undergrad at San José State
+            University.
+            <br />
+            <br />
+            I'm interested in the squishy middle ground where technology meets
+            design meets people. That is,
+            <em class="font-serif">human-computer interaction</em>, especially
+            in the context of
+            <em class="font-serif">frontend web applications</em>. I appreciate
+            software that's fast, accessible, intuitive, and delightful to use,
+            and I strive to create such experiences in my work
+            <b>without sacrificing visual appeal</b>.
+            <br />
+            <br />
+            When I'm not coding, you can catch me struggling to hit a deadlift
+            PR at the
+            <a
+              href="https://spartanrecreation.com/"
+              target="_blank"
+              class="transition-all duration-100 ease-in-out hover:opacity-50 text-sky-600 hover:underline active:opacity-25 cursor-pointer"
+              >SRAC</a
+            >, watching
+            <a
+              href="https://severance.wiki/"
+              target="_blank"
+              class="transition all duration-100 ease-in-out hover:opacity-50 text-sky-600 hover:underline active:opacity-25 cursor-pointer"
+              >Severance</a
+            >, or listening to
+            <a
+              href="https://www.youtube.com/watch?v=m94MMHG1fJY"
+              target="_blank"
+              class="transition all duration-100 ease-in-out hover:opacity-50 text-sky-600 hover:underline active:opacity-25 cursor-pointer"
+            >
+              Mac Miller
+            </a>
+            .
+          </span>
+        </p>
+      </section>
+      <div class="py-6 scroll-out">
+        <hr class="text-slate-200 scroll-in" />
+      </div>
+      <section class="flex flex-wrap items-center gap-6 p-6">
+        <h2 class="font-semibold text-xl scroll-out">
+          <span class="scroll-in">skills & experience</span>
+        </h2>
+        <p class="scroll-out">
+          <span class="scroll-in">
+            I’m well versed in <b>Typescript</b> and <b>React.JS</b>, along with
+            many other web development technologies. I’ve implemented front-end
+            features such as mobile-first responsive CSS, atomic component
+            design, form validation, authorization, pagination, and much more.
+            I’m also experienced in creating design systems using <b>Figma</b>.
+          </span>
+        </p>
+        <fieldset class="flex flex-wrap gap-2">
+          <legend class="sr-only">Projects with Skill Filters</legend>
+          <input
+            id="javascript"
+            type="checkbox"
+            name="skills"
+            value="javascript"
+            class="peer/javascript sr-only"
+          />
+          <label
+            for="javascript"
+            class="scroll-out transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus/javascript:ring-2 rounded-full bg-slate-200 px-4 py-2 text-slate-500 peer-checked/javascript:bg-[var(--primary)] peer-checked/javascript:text-white"
+          >
+            Javascript
+          </label>
+          <input
+            id="typescript"
+            type="checkbox"
+            name="skills"
+            value="typescript"
+            class="peer/typescript sr-only"
+          />
+          <label
+            for="typescript"
+            class="scroll-out transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus/typescript:ring-2 rounded-full bg-slate-200 px-4 py-2 text-slate-500 peer-checked/typescript:bg-[var(--primary)] peer-checked/typescript:text-white"
+          >
+            Typescript
+          </label>
+          <input
+            id="react"
+            type="checkbox"
+            name="skills"
+            value="react"
+            class="peer/react sr-only"
+          />
+          <label
+            for="react"
+            class="scroll-out transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus/react:ring-2 rounded-full bg-slate-200 px-4 py-2 text-slate-500 peer-checked/react:bg-[var(--primary)] peer-checked/react:text-white"
+          >
+            React.JS
+          </label>
+          <input
+            id="nextjs"
+            type="checkbox"
+            name="skills"
+            value="nextjs"
+            class="peer/nextjs sr-only"
+          />
+          <label
+            for="nextjs"
+            class="scroll-out transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus/nextjs:ring-2 rounded-full bg-slate-200 px-4 py-2 text-slate-500 peer-checked/nextjs:bg-[var(--primary)] peer-checked/nextjs:text-white"
+          >
+            Next.JS
+          </label>
+          <input
+            id="tailwindcss"
+            type="checkbox"
+            name="skills"
+            value="tailwindcss"
+            class="peer/tailwindcss sr-only"
+          />
+          <label
+            for="tailwindcss"
+            class="scroll-out transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus/tailwindcss:ring-2 rounded-full bg-slate-200 px-4 py-2 text-slate-500 peer-checked/tailwindcss:bg-[var(--primary)] peer-checked/tailwindcss:text-white"
+          >
+            TailwindCSS
+          </label>
+          <input
+            id="expressjs"
+            type="checkbox"
+            name="skills"
+            value="expressjs"
+            class="peer/expressjs sr-only"
+          />
+          <label
+            for="expressjs"
+            class="scroll-out transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus/expressjs:ring-2 rounded-full bg-slate-200 px-4 py-2 text-slate-500 peer-checked/expressjs:bg-[var(--primary)] peer-checked/expressjs:text-white"
+          >
+            Express.JS
+          </label>
+          <input
+            id="redux"
+            type="checkbox"
+            name="skills"
+            value="redux"
+            class="peer/redux sr-only"
+          />
+          <label
+            for="redux"
+            class="scroll-out transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus/redux:ring-2 rounded-full bg-slate-200 px-4 py-2 text-slate-500 peer-checked/redux:bg-[var(--primary)] peer-checked/redux:text-white"
+          >
+            Redux
+          </label>
+          <input
+            id="figma"
+            type="checkbox"
+            name="skills"
+            value="figma"
+            class="peer/figma sr-only"
+          />
+          <label
+            for="figma"
+            class="scroll-out transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus/figma:ring-2 rounded-full bg-slate-200 px-4 py-2 text-slate-500 peer-checked/figma:bg-[var(--primary)] peer-checked/figma:text-white"
+          >
+            Figma
+          </label>
+          <input
+            id="adobe"
+            type="checkbox"
+            name="skills"
+            value="adobe"
+            class="peer/adobe sr-only"
+          />
+          <label
+            for="adobe"
+            class="scroll-out transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus/adobe:ring-2 rounded-full bg-slate-200 px-4 py-2 text-slate-500 peer-checked/adobe:bg-[var(--primary)] peer-checked/adobe:text-white"
+          >
+            Adobe Suite
+          </label>
+          <input
+            id="python"
+            type="checkbox"
+            name="skills"
+            value="python"
+            class="peer/python sr-only"
+          />
+          <label
+            for="python"
+            class="scroll-out transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus/python:ring-2 rounded-full bg-slate-200 px-4 py-2 text-slate-500 peer-checked/python:bg-[var(--primary)] peer-checked/python:text-white"
+          >
+            Python
+          </label>
+          <input
+            id="selenium"
+            type="checkbox"
+            name="skills"
+            value="selenium"
+            class="peer/selenium sr-only"
+          />
+          <label
+            for="selenium"
+            class="scroll-out transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus/selenium:ring-2 rounded-full bg-slate-200 px-4 py-2 text-slate-500 peer-checked/selenium:bg-[var(--primary)] peer-checked/selenium:text-white"
+          >
+            Selenium
+          </label>
+          <input
+            id="django"
+            type="checkbox"
+            name="skills"
+            value="django"
+            class="peer/django sr-only"
+          />
+          <label
+            for="django"
+            class="scroll-out transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus/django:ring-2 rounded-full bg-slate-200 px-4 py-2 text-slate-500 peer-checked/django:bg-[var(--primary)] peer-checked/django:text-white"
+          >
+            Django
+          </label>
+          <input
+            id="flask"
+            type="checkbox"
+            name="skills"
+            value="flask"
+            class="peer/flask sr-only"
+          />
+          <label
+            for="flask"
+            class="scroll-out transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus/flask:ring-2 rounded-full bg-slate-200 px-4 py-2 text-slate-500 peer-checked/flask:bg-[var(--primary)] peer-checked/flask:text-white"
+          >
+            Flask
+          </label>
+          <input
+            id="openai"
+            type="checkbox"
+            name="skills"
+            value="openai"
+            class="peer/openai sr-only"
+          />
+          <label
+            for="openai"
+            class="scroll-out transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus/openai:ring-2 rounded-full bg-slate-200 px-4 py-2 text-slate-500 peer-checked/openai:bg-[var(--primary)] peer-checked/openai:text-white"
+          >
+            OpenAI
+          </label>
+          <input
+            id="sql"
+            type="checkbox"
+            name="skills"
+            value="sql"
+            class="peer/sql sr-only"
+          />
+          <label
+            for="sql"
+            class="scroll-out transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus/sql:ring-2 rounded-full bg-slate-200 px-4 py-2 text-slate-500 peer-checked/sql:bg-[var(--primary)] peer-checked/sql:text-white"
+          >
+            SQL
+          </label>
+          <input
+            id="postgresql"
+            type="checkbox"
+            name="skills"
+            value="postgresql"
+            class="peer/postgresql sr-only"
+          />
+          <label
+            for="postgresql"
+            class="scroll-out transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus/postgresql:ring-2 rounded-full bg-slate-200 px-4 py-2 text-slate-500 peer-checked/postgresql:bg-[var(--primary)] peer-checked/postgresql:text-white"
+          >
+            PostgreSQL
+          </label>
+          <input
+            id="mongodb"
+            type="checkbox"
+            name="skills"
+            value="mongodb"
+            class="peer/mongodb sr-only"
+          />
+          <label
+            for="mongodb"
+            class="scroll-out transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus/mongodb:ring-2 rounded-full bg-slate-200 px-4 py-2 text-slate-500 peer-checked/mongodb:bg-[var(--primary)] peer-checked/mongodb:text-white"
+          >
+            MongoDB
+          </label>
+          <input
+            id="vercel"
+            type="checkbox"
+            name="skills"
+            value="vercel"
+            class="peer/vercel sr-only"
+          />
+          <label
+            for="vercel"
+            class="scroll-out transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus/vercel:ring-2 rounded-full bg-slate-200 px-4 py-2 text-slate-500 peer-checked/vercel:bg-[var(--primary)] peer-checked/vercel:text-white"
+          >
+            Vercel
+          </label>
+          <input
+            id="netlify"
+            type="checkbox"
+            name="skills"
+            value="netlify"
+            class="peer/netlify sr-only"
+          />
+          <label
+            for="netlify"
+            class="scroll-out transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus/netlify:ring-2 rounded-full bg-slate-200 px-4 py-2 text-slate-500 peer-checked/netlify:bg-[var(--primary)] peer-checked/netlify:text-white"
+          >
+            Netlify
+          </label>
+          <input
+            id="docker"
+            type="checkbox"
+            name="skills"
+            value="docker"
+            class="peer/docker sr-only"
+          />
+          <label
+            for="docker"
+            class="scroll-out transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus/docker:ring-2 rounded-full bg-slate-200 px-4 py-2 text-slate-500 peer-checked/docker:bg-[var(--primary)] peer-checked/docker:text-white"
+          >
+            Docker
+          </label>
+
+          <div class="w-full"></div>
+
+          <div
+            class="proj-card peer-checked/expressjs:hidden peer-checked/redux:hidden peer-checked/selenium:hidden peer-checked/flask:hidden peer-checked/openai:hidden peer-checked/mongodb:hidden peer-checked/netlify:hidden scroll-out flex-1 lg:min-w-[calc(50%-0.5rem)] max-lg:min-w-full"
+          >
+            <div
+              class="w-full h-full scroll-in flex flex-col justify-between gap-3 rounded-xl bg-white p-5 border-2 border-slate-200"
+            >
+              <div class="flex flex-col gap-3">
+                <div class="flex justify-between items-start gap-3">
+                  <p class="flex flex-col text-lg font-semibold leading-6">
+                    Lenses
+                    <span class="text-md text-slate-500 leading-5"
+                      >Jan 2024 - Present</span
+                    >
+                  </p>
+                  <a
+                    href="https://github.com/SJSUCSClub/course-scheduling-client"
+                    target="_blank"
+                    class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+                  >
+                    <img
+                      src="https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/20/solid/arrow-up-right.svg"
+                      alt="External Link Icon"
+                      class="min-w-5 w-5"
+                    />
+                  </a>
+                </div>
+                <a
+                  href="https://acmsjsu.org/"
+                  target="_blank"
+                  class="transition-all duration-100 ease-in-out hover:opacity-50 text-sky-600 active:opacity-25 cursor-pointer text-sm font-medium italic underline leading-5 w-fit"
+                >
+                  ACM-CS at SJSU
+                </a>
+                <p class="text-md text-slate-500 leading-5">
+                  A course scheduling platform for SJSU students.
+                </p>
+              </div>
+              <ul class="flex flex-wrap gap-2">
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Typescript
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Next.JS
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  TailwindCSS
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">Figma</li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Django
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  PostgreSQL
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Vercel
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Docker
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="proj-card peer-checked/expressjs:hidden peer-checked/redux:hidden peer-checked/python:hidden peer-checked/selenium:hidden peer-checked/django:hidden peer-checked/flask:hidden peer-checked/openai:hidden peer-checked/sql:hidden peer-checked/postgresql:hidden peer-checked/mongodb:hidden peer-checked/docker:hidden scroll-out flex-1 lg:min-w-[calc(50%-0.5rem)] max-lg:min-w-full"
+          >
+            <div
+              class="w-full h-full scroll-in flex flex-col justify-between gap-3 rounded-xl bg-white p-5 border-2 border-slate-200"
+            >
+              <div class="flex flex-col gap-3">
+                <div class="flex justify-between items-start gap-3">
+                  <p class="flex flex-col text-lg font-semibold leading-6">
+                    ML@SJSU Website
+                    <span class="text-md text-slate-500 leading-5"
+                      >May 2024 - Present</span
+                    >
+                  </p>
+                  <a
+                    href="https://github.com/mlatsjsu/mlatsjsu-website"
+                    target="_blank"
+                    class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer w-fit"
+                  >
+                    <img
+                      src="https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/20/solid/arrow-up-right.svg"
+                      alt="External Link Icon"
+                      class="min-w-5 w-5"
+                    />
+                  </a>
+                </div>
+                <a
+                  href="https://mlatsjsu.com/"
+                  target="_blank"
+                  class="transition-all duration-100 ease-in-out hover:opacity-50 text-sky-600 active:opacity-25 cursor-pointer text-sm font-medium italic underline leading-5 w-fit"
+                >
+                  ML@SJSU
+                </a>
+                <p class="text-md text-slate-500 leading-5">
+                  The ML@SJSU official website and blog.
+                </p>
+              </div>
+              <ul class="flex flex-wrap gap-2">
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Typescript
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Next.JS
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  TailwindCSS
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">Figma</li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Adobe Suite
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  PostgreSQL
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Vercel
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Netlify
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="proj-card peer-checked/javascript:hidden peer-checked/typescript:hidden peer-checked/react:hidden peer-checked/nextjs:hidden peer-checked/tailwindcss:hidden peer-checked/expressjs:hidden peer-checked/redux:hidden peer-checked/figma:hidden peer-checked/adobe:hidden peer-checked/flask:hidden peer-checked/sql:hidden peer-checked/postgresql:hidden peer-checked/mongodb:hidden peer-checked/vercel:hidden peer-checked/netlify:hidden peer-checked/docker:hidden scroll-out flex-1 lg:min-w-[calc(50%-0.5rem)] max-lg:min-w-full"
+          >
+            <div
+              class="w-full h-full scroll-in flex flex-col justify-between gap-3 rounded-xl bg-white p-5 border-2 border-slate-200"
+            >
+              <div class="flex flex-col gap-3">
+                <div class="flex justify-between items-start gap-3">
+                  <p class="flex flex-col text-lg font-semibold leading-6">
+                    Automated Content Creation Bot
+                    <span class="text-md text-slate-500 leading-5"
+                      >Jan 2025 - Feb 2025</span
+                    >
+                  </p>
+                  <a
+                    href="https://github.com/ahmadgaz/unhinged_redditor"
+                    target="_blank"
+                    class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+                  >
+                    <img
+                      src="https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/20/solid/arrow-up-right.svg"
+                      alt="External Link Icon"
+                      class="min-w-5 w-5"
+                    />
+                  </a>
+                </div>
+                <p class="text-md text-slate-500 leading-5">
+                  Developed and deployed an automated bot using Python raking in
+                  50k+ views and engagement weekly.
+                </p>
+              </div>
+              <ul class="flex flex-wrap gap-2">
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">HTML</li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">CSS</li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Python
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Selenium
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  OpenAI
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="proj-card peer-checked/expressjs:hidden peer-checked/redux:hidden peer-checked/python:hidden peer-checked/selenium:hidden peer-checked/django:hidden peer-checked/flask:hidden peer-checked/openai:hidden peer-checked/sql:hidden peer-checked/postgresql:hidden peer-checked/mongodb:hidden peer-checked/netlify:hidden peer-checked/docker:hidden scroll-out flex-1 lg:min-w-[calc(50%-0.5rem)] max-lg:min-w-full"
+          >
+            <div
+              class="w-full h-full scroll-in flex flex-col justify-between gap-3 rounded-xl bg-white p-5 border-2 border-slate-200"
+            >
+              <div class="flex flex-col gap-3">
+                <div class="flex justify-between items-start gap-3">
+                  <p class="flex flex-col text-lg font-semibold leading-6">
+                    AR/VR Club Website
+                    <span class="text-md text-slate-500 leading-5"
+                      >Jun 2023 - Aug 2023</span
+                    >
+                  </p>
+                  <a
+                    href="https://github.com/ahmadgaz/vr-club"
+                    target="_blank"
+                    class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer w-fit"
+                  >
+                    <img
+                      src="https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/20/solid/arrow-up-right.svg"
+                      alt="External Link Icon"
+                      class="min-w-5 w-5"
+                    />
+                  </a>
+                </div>
+                <a
+                  href="https://vr-club-seven.vercel.app/"
+                  target="_blank"
+                  class="transition-all duration-100 ease-in-out hover:opacity-50 text-sky-600 active:opacity-25 cursor-pointer text-sm font-medium italic underline leading-5 w-fit"
+                >
+                  AR/VR Club
+                </a>
+                <p class="text-md text-slate-500 leading-5">
+                  The SJSU AR/VR Club website and CMS.
+                </p>
+              </div>
+              <ul class="flex flex-wrap gap-2">
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Typescript
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Next.JS
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  TailwindCSS
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">Figma</li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Adobe Suite
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Vercel
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="proj-card peer-checked/typescript:hidden peer-checked/react:hidden peer-checked/nextjs:hidden peer-checked/tailwindcss:hidden peer-checked/expressjs:hidden peer-checked/redux:hidden peer-checked/figma:hidden peer-checked/adobe:hidden peer-checked/python:hidden peer-checked/selenium:hidden peer-checked/django:hidden peer-checked/flask:hidden peer-checked/openai:hidden peer-checked/sql:hidden peer-checked/postgresql:hidden peer-checked/mongodb:hidden peer-checked/vercel:hidden peer-checked/netlify:hidden peer-checked/docker:hidden scroll-out flex-1 lg:min-w-[calc(50%-0.5rem)] max-lg:min-w-full"
+          >
+            <div
+              class="w-full h-full scroll-in flex flex-col justify-between gap-3 rounded-xl bg-white p-5 border-2 border-slate-200"
+            >
+              <div class="flex flex-col gap-3">
+                <div class="flex justify-between items-start gap-3">
+                  <p class="flex flex-col text-lg font-semibold leading-6">
+                    Ultra Violet Text
+                    <span class="text-md text-slate-500 leading-5"
+                      >Apr 2024</span
+                    >
+                  </p>
+                  <a
+                    href="https://devpost.com/software/ultraviolettext"
+                    target="_blank"
+                    class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer w-fit"
+                  >
+                    <img
+                      src="https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/20/solid/arrow-up-right.svg"
+                      alt="External Link Icon"
+                      class="min-w-5 w-5"
+                    />
+                  </a>
+                </div>
+                <p
+                  class="text-sm font-medium italic text-slate-500 leading-5 w-fit"
+                >
+                  Hackathon
+                </p>
+                <p class="text-md text-slate-500 leading-5">
+                  Ultra Violet Text is a chrome extension that aims to expand
+                  users’ media literacy by highlighting persuasive language.
+                </p>
+              </div>
+              <ul class="flex flex-wrap gap-2">
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Javascript
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">HTML</li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">CSS</li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="proj-card peer-checked/expressjs:hidden peer-checked/redux:hidden peer-checked/python:hidden peer-checked/selenium:hidden peer-checked/django:hidden peer-checked/flask:hidden peer-checked/openai:hidden peer-checked/mongodb:hidden peer-checked/netlify:hidden peer-checked/docker:hidden scroll-out flex-1 lg:min-w-[calc(50%-0.5rem)] max-lg:min-w-full"
+          >
+            <div
+              class="w-full h-full scroll-in flex flex-col justify-between gap-3 rounded-xl bg-white p-5 border-2 border-slate-200"
+            >
+              <div class="flex flex-col gap-3">
+                <div class="flex justify-between items-start gap-3">
+                  <p class="flex flex-col text-lg font-semibold leading-6">
+                    RBAC Library Management System
+                    <span class="text-md text-slate-500 leading-5"
+                      >Nov 2023</span
+                    >
+                  </p>
+                  <a
+                    href="https://school-cmpe132-project-implementation.vercel.app/"
+                    target="_blank"
+                    class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer w-fit"
+                  >
+                    <img
+                      src="https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/20/solid/arrow-up-right.svg"
+                      alt="External Link Icon"
+                      class="min-w-5 w-5"
+                    />
+                  </a>
+                </div>
+                <p class="text-md text-slate-500 leading-5">
+                  A role-based access control library management system built in
+                  Next.JS.
+                </p>
+              </div>
+              <ul class="flex flex-wrap gap-2">
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Typescript
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Next.JS
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  TailwindCSS
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">Figma</li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Adobe Suite
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  PostgreSQL
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Vercel
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="proj-card peer-checked/typescript:hidden peer-checked/nextjs:hidden peer-checked/tailwindcss:hidden peer-checked/figma:hidden peer-checked/python:hidden peer-checked/selenium:hidden peer-checked/django:hidden peer-checked/flask:hidden peer-checked/openai:hidden peer-checked/sql:hidden peer-checked/postgresql:hidden peer-checked/vercel:hidden peer-checked/vercel:hidden peer-checked/netlify:hidden peer-checked/docker:hidden scroll-out flex-1 lg:min-w-[calc(50%-0.5rem)] max-lg:min-w-full"
+          >
+            <div
+              class="w-full h-full scroll-in flex flex-col justify-between gap-3 rounded-xl bg-white p-5 border-2 border-slate-200"
+            >
+              <div class="flex flex-col gap-3">
+                <div class="flex justify-between items-start gap-3">
+                  <p class="flex flex-col text-lg font-semibold leading-6">
+                    Bookbunny
+                    <span class="text-md text-slate-500 leading-5"
+                      >Jan 2023 - May 2023</span
+                    >
+                  </p>
+                  <a
+                    href="https://www.bookbunny.net/"
+                    target="_blank"
+                    class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer w-fit"
+                  >
+                    <img
+                      src="https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/20/solid/arrow-up-right.svg"
+                      alt="External Link Icon"
+                      class="min-w-5 w-5"
+                    />
+                  </a>
+                </div>
+                <p class="text-md text-slate-500 leading-5">
+                  An event scheduling platform build using the MERN stack and
+                  integrated with Google Calendar.
+                </p>
+              </div>
+              <ul class="flex flex-wrap gap-2">
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Javascript
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  React.JS
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Express.JS
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">Redux</li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Adobe Suite
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  MongoDB
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="proj-card peer-checked/typescript:hidden peer-checked/nextjs:hidden peer-checked/tailwindcss:hidden peer-checked/expressjs:hidden peer-checked/redux:hidden peer-checked/figma:hidden peer-checked/adobe:hidden peer-checked/python:hidden peer-checked/selenium:hidden peer-checked/django:hidden peer-checked/flask:hidden peer-checked/openai:hidden peer-checked/sql:hidden peer-checked/postgresql:hidden peer-checked/mongodb:hidden peer-checked/vercel:hidden peer-checked/netlify:hidden peer-checked/docker:hidden scroll-out flex-1 lg:min-w-[calc(50%-0.5rem)] max-lg:min-w-full"
+          >
+            <div
+              class="w-full h-full scroll-in flex flex-col justify-between gap-3 rounded-xl bg-white p-5 border-2 border-slate-200"
+            >
+              <div class="flex flex-col gap-3">
+                <div class="flex justify-between items-start gap-3">
+                  <p class="flex flex-col text-lg font-semibold leading-6">
+                    Metris
+                    <span class="text-md text-slate-500 leading-5"
+                      >Sep 2022 - Nov 2022</span
+                    >
+                  </p>
+                  <a
+                    href="https://react-tetris-app-rho.vercel.app/"
+                    target="_blank"
+                    class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer w-fit"
+                  >
+                    <img
+                      src="https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/20/solid/arrow-up-right.svg"
+                      alt="External Link Icon"
+                      class="min-w-5 w-5"
+                    />
+                  </a>
+                </div>
+                <p class="text-md text-slate-500 leading-5">
+                  My first web app :,). A Tetris clone built using React.JS.
+                </p>
+              </div>
+              <ul class="flex flex-wrap gap-2">
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  Javascript
+                </li>
+                <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+                  React.JS
+                </li>
+              </ul>
+            </div>
+          </div>
+        </fieldset>
+      </section>
+      <div class="py-6 scroll-out">
+        <hr class="text-slate-200 scroll-in" />
+      </div>
+      <section class="flex flex-wrap items-center gap-6 p-6">
+        <h2 class="font-semibold text-xl scroll-out">
+          <span class="scroll-in">more cool things</span>
+        </h2>
+        <ul class="flex flex-col items-stretch max-w-full min-w-full gap-4">
+          <li class="scroll-out flex-1">
+            <details
+              class="flex scroll-in flex-col p-6 rounded-2xl overflow-hidden bg-white border-2 border-slate-200"
+            >
+              <summary
+                class="transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer font-semibold text-xl"
+              >
+                dynamicity
+              </summary>
+              <p class="text-slate-500 pt-3">
+                I love wrangling fancy, cutting-edge CSS features to design
+                <b>smooth interfaces</b>. But behind every polished UI, I
+                prioritize <b>scalability</b>, <b>reusable components</b>, and
+                <b>intuitive, type-safe codebases</b> to keep front-end systems
+                future-proof.
+              </p>
+              <div class="w-full flex justify-center pt-4">
+                <canvas id="dynamicity" width="412" class="w-64"></canvas>
+              </div>
+            </details>
+          </li>
+          <li class="scroll-out flex-1">
+            <details
+              class="flex scroll-in flex-col p-6 rounded-2xl overflow-hidden bg-white border-2 border-slate-200"
+            >
+              <summary
+                class="transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer font-semibold text-xl"
+              >
+                speed
+              </summary>
+              <p class="text-slate-500 pt-3">
+                I'm focused on <b>optimizing performance</b> by minimizing
+                <b>technical overhead</b> and
+                <b>implementing best practices</b>.
+              </p>
+              <div class="w-full flex justify-center pt-4">
+                <canvas id="speed" width="412" class="w-64"></canvas>
+              </div>
+            </details>
+          </li>
+          <li class="scroll-out flex-1">
+            <details
+              class="flex scroll-in flex-col p-6 rounded-2xl overflow-hidden bg-white border-2 border-slate-200"
+            >
+              <summary
+                class="transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer font-semibold text-xl"
+              >
+                adaptability
+              </summary>
+              <p class="text-slate-500 pt-3">
+                I build <b>mobile-first</b> and <b>responsive</b> design systems
+                that adapt to any screen size.
+              </p>
+              <div class="w-full flex justify-center pt-4">
+                <canvas id="adaptability" width="412" class="w-64"></canvas>
+              </div>
+            </details>
+          </li>
+          <li class="scroll-out flex-1">
+            <details
+              class="flex scroll-in flex-col p-6 rounded-2xl overflow-hidden bg-white border-2 border-slate-200"
+            >
+              <summary
+                class="transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer font-semibold text-xl"
+              >
+                cohesion
+              </summary>
+              <p class="text-slate-500 pt-3">
+                I develop cohesive design systems that
+                <b>standardize the user experience</b>. Consistent design
+                principles ensure enhance product development and
+                <b>brand recognition</b>.
+              </p>
+              <div class="flex gap-3 min-w-[32rem] max-lg:-translate-x-10 pt-4">
+                <section
+                  role="status"
+                  aria-live="polite"
+                  class="flex flex-col items-center justify-center gap-3 min-w-[12rem] rounded-xl bg-white p-5 border-2 border-slate-200"
+                >
+                  <img
+                    src="https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/24/solid/arrow-up-tray.svg"
+                    alt="Sample Upload Card Tray Icon"
+                    class="w-7 h-7"
+                  />
+                  <p class="text-center text-lg font-semibold leading-6">
+                    Upload Complete
+                  </p>
+                  <p class="text-center text-md text-slate-500 leading-5">
+                    Your files have been uploaded successfully.
+                  </p>
+                  <button
+                    type="button"
+                    class="transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer w-full bg-white px-4 py-2 text-md text-[var(--primary)] font-semibold border-2 border-slate-200 rounded-lg"
+                  >
+                    Continue
+                  </button>
+                </section>
+                <div class="flex flex-col gap-4">
+                  <fieldset>
+                    <legend class="sr-only">Sample Options Group 1</legend>
+                    <div class="flex gap-2">
+                      <label
+                        ><input
+                          type="radio"
+                          value="boom"
+                          aria-label="Boom option"
+                          class="peer sr-only" />
+                        <div
+                          class="h-5 w-5 cursor-pointer rounded-full bg-white border-2 border-slate-200 peer-focus:ring-2 peer-checked:bg-[radial-gradient(white_0,white_25%,var(--primary)_25%,var(--primary)_100%)]"
+                        ></div></label
+                      ><label>
+                        <input
+                          type="checkbox"
+                          value="bam"
+                          aria-label="Bam option"
+                          class="peer sr-only" />
+                        <div
+                          class="h-5 w-5 cursor-pointer rounded-md bg-white border-2 border-slate-200 peer-focus:ring-2 ring-black peer-checked:bg-[var(--primary)] text-white text-sm font-semibold flex justify-center items-center peer-checked:before:content-['✓']"
+                        ></div
+                      ></label>
+                      <label
+                        ><input
+                          type="checkbox"
+                          value="bop"
+                          aria-label="Bop option"
+                          class="peer sr-only"
+                        />
+
+                        <div
+                          class="relative h-5 w-9 rounded-full bg-slate-200 after:absolute after:start-[2px] after:top-[2px] after:h-4 after:w-4 after:rounded-full after:border-2 after:border-slate-200 after:bg-white after:transition-all after:content-[''] peer-checked:bg-[var(--primary)] peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-2 rtl:peer-checked:after:-translate-x-full cursor-pointer"
+                        ></div>
+                      </label>
+                    </div>
+                  </fieldset>
+                  <div class="flex flex-col gap-4">
+                    <button
+                      type="submit"
+                      class="transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer w-full bg-[var(--primary)] px-4 py-2 text-md text-white font-semibold border-2 border-slate-200 rounded-lg"
+                    >
+                      Submit</button
+                    ><button
+                      type="button"
+                      class="transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer w-full bg-white px-4 py-2 text-md text-[var(--primary)] font-semibold border-2 border-slate-200 rounded-lg"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                  <fieldset>
+                    <legend class="sr-only">Sample Options Group 2</legend>
+                    <div class="flex gap-2">
+                      <label
+                        ><input
+                          type="checkbox"
+                          value="badabop"
+                          aria-label="Badabop option"
+                          class="peer sr-only"
+                        />
+
+                        <div
+                          class="relative h-5 w-9 rounded-full bg-slate-200 after:absolute after:start-[2px] after:top-[2px] after:h-4 after:w-4 after:rounded-full after:border-2 after:border-slate-200 after:bg-white after:transition-all after:content-[''] peer-checked:bg-[var(--primary)] peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-2 rtl:peer-checked:after:-translate-x-full cursor-pointer"
+                        ></div>
+                      </label>
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="boomp"
+                          aria-label="Boomp option"
+                          class="peer sr-only"
+                        />
+                        <div
+                          class="h-5 w-5 cursor-pointer rounded-md bg-white border-2 border-slate-200 peer-focus:ring-2 ring-black peer-checked:bg-[var(--primary)] text-white text-sm font-semibold flex justify-center items-center peer-checked:before:content-['✓']"
+                        ></div>
+                      </label>
+                      <label
+                        ><input
+                          type="radio"
+                          value="pow"
+                          aria-label="Pow option"
+                          class="peer sr-only" />
+                        <div
+                          class="h-5 w-5 cursor-pointer rounded-full bg-white border-2 border-slate-200 peer-focus:ring-2 peer-checked:bg-[radial-gradient(white_0,white_25%,var(--primary)_25%,var(--primary)_100%)]"
+                        ></div
+                      ></label>
+                    </div>
+                  </fieldset>
+                  <menu aria-label="Sample Yes/No Options" class="flex w-full">
+                    <li>
+                      <input
+                        id="response-yes"
+                        type="radio"
+                        name="response"
+                        value="yes"
+                        class="peer sr-only"
+                      /><label
+                        for="response-yes"
+                        class="transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus:ring-2 bg-white px-4 py-2 text-md font-semibold border-2 border-slate-200 rounded-l-lg peer-checked:text-white peer-checked:bg-[var(--primary)]"
+                        >Yes</label
+                      >
+                    </li>
+                    <li>
+                      <input
+                        id="response-no"
+                        type="radio"
+                        name="response"
+                        value="no"
+                        class="peer sr-only"
+                      /><label
+                        for="response-no"
+                        class="transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus:ring-2 bg-white px-4 py-2 text-md font-semibold border-2 border-l-0 border-slate-200 rounded-r-lg peer-checked:text-white peer-checked:bg-[var(--primary)]"
+                        >No</label
+                      >
+                    </li>
+                  </menu>
+                </div>
+                <div class="flex flex-col gap-4">
+                  <div
+                    class="flex flex-col gap-3 rounded-xl bg-white p-5 border-2 border-slate-200"
+                  >
+                    <p class="flex flex-col text-lg font-semibold leading-6">
+                      Ahmad
+                      <span class="text-md text-slate-500 leading-5"
+                        >/ʔáː.màd/</span
+                      >
+                    </p>
+                    <p class="text-md text-slate-500 leading-5">
+                      A name of Arabic origin meaning praised or one who
+                      constantly thanks God.
+                    </p>
+                  </div>
+                  <menu
+                    aria-label="Sample Options Group 3"
+                    class="flex w-full gap-2"
+                  >
+                    <li>
+                      <label
+                        ><input
+                          type="checkbox"
+                          name="options"
+                          value="design"
+                          class="peer sr-only"
+                        /><span
+                          class="transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus:ring-2 rounded-full bg-slate-200 px-4 py-2 text-slate-500 peer-checked:bg-[var(--primary)] peer-checked:text-white"
+                          >Design</span
+                        ></label
+                      >
+                    </li>
+                    <li>
+                      <label
+                        ><input
+                          type="checkbox"
+                          name="options"
+                          value="code"
+                          class="peer sr-only"
+                        /><span
+                          class="transition all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer peer-focus:ring-2 rounded-full bg-slate-200 px-4 py-2 text-slate-500 peer-checked:bg-[var(--primary)] peer-checked:text-white"
+                          >Code</span
+                        ></label
+                      >
+                    </li>
+                  </menu>
+                </div>
+              </div>
+            </details>
+          </li>
+        </ul>
+        <p id="contact" class="scroll-out">
+          <span class="scroll-in">
+            To see more of what I do, visit
+            <a
+              href="https://github.com/ahmadgaz"
+              target="_blank"
+              class="transition-all duration-100 ease-in-out hover:opacity-50 text-sky-600 hover:underline active:opacity-25 cursor-pointer"
+              >my GitHub</a
+            >, or
+            <a
+              href="https://ahmadgaz.hashnode.dev/"
+              target="_blank"
+              class="transition-all duration-100 ease-in-out hover:opacity-50 text-sky-600 hover:underline active:opacity-25 cursor-pointer"
+              >my blog</a
+            >. If you're interested in collaborating, or just want to chat, you
+            can reach me at
+            <a
+              href="mailto:contact@gaza.li"
+              target="_blank"
+              class="transition-all duration-100 ease-in-out hover:opacity-50 text-sky-600 hover:underline active:opacity-25 cursor-pointer"
+              >contact@gaza.li</a
+            >
+            or
+            <a
+              href="https://www.linkedin.com/in/ahmad-gazali/"
+              target="_blank"
+              class="transition-all duration-100 ease-in-out hover:opacity-50 text-sky-600 hover:underline active:opacity-25 cursor-pointer"
+              >LinkedIn</a
+            >.
+          </span>
+        </p>
+        <h2 class="font-semibold text-xl scroll-out">
+          <span class="scroll-in">let's connect :)</span>
+        </h2>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

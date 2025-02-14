@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <style>
+      :root {
+        --primary: #f1b947;
+      }
+      [popover]:popover-open {
+        opacity: 1;
+      }
+
+      [popover] {
+        opacity: 0;
+        transition: all 0.25s allow-discrete;
+      }
+
+      @starting-style {
+        [popover]:popover-open {
+          opacity: 0;
+        }
+      }
+
+      menu {
+        filter: blur(0px);
+        transform: translateY(0px);
+        transition: all 0.5s allow-discrete;
+      }
+      @starting-style {
+        menu {
+          filter: blur(1px);
+          transform: translateY(2.5px);
+        }
+      }
+
+      .scroll-out {
+        animation: fade-out linear;
+        animation-timeline: view(block 0% max(calc(100% - 100px), 90%));
+      }
+      .scroll-in {
+        animation: fade-in linear;
+        animation-timeline: view(block max(calc(100% - 100px), 90%) 0%);
+      }
+      @keyframes fade-out {
+        from {
+          filter: blur(0px);
+          transform: translateY(0);
+          opacity: 1;
+        }
+        50% {
+          filter: blur(1px);
+          transform: translateY(-2.5px);
+          opacity: 0;
+        }
+        to {
+          filter: blur(1px);
+          transform: translateY(-2.5px);
+          opacity: 0;
+        }
+      }
+      @keyframes fade-in {
+        from {
+          filter: blur(1px);
+          transform: translateY(2.5px);
+          opacity: 0;
+        }
+        50% {
+          filter: blur(1px);
+          transform: translateY(2.5px);
+          opacity: 0;
+        }
+        to {
+          filter: blur(0px);
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      ::selection {
+        background: var(--primary);
+        color: rgb(255, 255, 255);
+      }
+    </style>
+    <title>ahmad's resume | prj1</title>
+  </head>
+  <body>
+    <main class="mx-auto w-full max-w-xl pb-36">
+      <header class="w-full flex justify-between items-center gap-6 p-6">
+        <a
+          href="resume.html"
+          class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+          aria-label="Home"
+        >
+          <img src="logo.svg" class="w-12 h-12" alt="Whiskers" />
+        </a>
+        <button
+          class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer font-semibold"
+          popovertarget="navigation-menu"
+          aria-label="Open menu"
+        >
+          $><span class="animate-pulse">_</span>
+        </button>
+        <dialog id="navigation-menu" popover>
+          <nav
+            class="fixed left-0 top-0 h-dvh w-full bg-white font-semibold"
+            aria-label="Navigation menu"
+          >
+            <menu
+              class="mx-auto w-full max-w-lg flex justify-between gap-6 p-6"
+            >
+              <li>
+                <menu>
+                  <li>
+                    <a
+                      href="prj1.html"
+                      class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+                      autofocus
+                      >prj1</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="prj2.html"
+                      class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+                      autofocus
+                      >prj2</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://github.com/ahmadgaz"
+                      target="_blank"
+                      class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+                      >github</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://ahmadgaz.hashnode.dev/"
+                      target="_blank"
+                      class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+                      >blog</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="transcript.html"
+                      class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+                      >transcript</a
+                    >
+                  </li>
+                </menu>
+              </li>
+              <li>
+                <button
+                  class="w-fit h-fit transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+                  popovertarget="navigation-menu"
+                  aria-label="Close menu"
+                >
+                  x
+                </button>
+              </li>
+            </menu>
+          </nav>
+        </dialog>
+      </header>
+      <section class="flex flex-col gap-3 p-6">
+        <div class="scroll-out w-full">
+          <div class="scroll-in flex justify-between items-start gap-3">
+            <h2 class="flex flex-col text-xl font-semibold">
+              prj1: Lenses
+              <span class="text-md text-slate-500">Jan 2024 - Present</span>
+            </h2>
+
+            <a
+              href="https://github.com/SJSUCSClub/course-scheduling-client"
+              target="_blank"
+              class="transition-all duration-100 ease-in-out hover:opacity-50 active:opacity-25 cursor-pointer"
+            >
+              <img
+                src="https://raw.githubusercontent.com/tailwindlabs/heroicons/master/src/20/solid/arrow-up-right.svg"
+                alt="External Link Icon"
+                class="min-w-5 w-5"
+              />
+            </a>
+          </div>
+        </div>
+        <a
+          href="https://acmsjsu.org/"
+          target="_blank"
+          class="scroll-out transition-all duration-100 ease-in-out hover:opacity-50 text-sky-600 active:opacity-25 cursor-pointer text-sm font-medium italic underline leading-5 w-fit"
+        >
+          <span class="scroll-in"> ACM-CS at SJSU </span>
+        </a>
+        <p>
+          I played a pivotal role in developing a comprehensive course
+          scheduling platform for <strong>SJSU</strong> students. In this
+          project, I was deeply involved in both the design and implementation
+          phase, working collaboratively with a team of more than 20 students to
+          establish requirements and coordinate the overall design strategy.
+          <br /><br />
+          I designed and prototyped the user interface using
+          <a href="https://www.figma.com" target="_blank"
+            ><strong>Figma</strong></a
+          >, and was heavily involved in the front-end
+          <a href="https://reactjs.org" target="_blank"
+            ><strong>ReactJS</strong></a
+          >
+          and
+          <a href="https://www.typescriptlang.org" target="_blank"
+            ><strong>Typescript</strong></a
+          >
+          implementation. I implemented features such as linkable state via URL
+          parameters, global state management with
+          <strong>React.useContext</strong>, response caching with
+          <a href="https://swr.vercel.app" target="_blank"
+            ><strong>Vercel SWR</strong></a
+          >, and comprehensive error handling, input validation, pagination, and
+          filtering. I also contributed to secure authentication flows by
+          integrating
+          <a
+            href="https://developers.google.com/identity/protocols/oauth2"
+            target="_blank"
+            ><strong>Google OAuth 2.0</strong></a
+          >
+          and managing cookies effectively, while also utilizing
+          <a href="https://tailwindcss.com" target="_blank"
+            ><strong>TailwindCSS</strong></a
+          >
+          to ensure a consistent and responsive design. <br /><br />
+          In addition, I contributed to building a
+          <strong>custom component library</strong> of over 25 reusable UI
+          components, adhering to <em>atomic design principles</em>. This
+          library not only improves code maintainability and efficiency of this
+          project, but allows for code reusability across other club projects as
+          well. <br /><br />
+          Along with the front-end work, I collaborated closely with the backend
+          team to design RESTful API endpoints and define the database schema.
+          My contributions extended to
+          <a href="https://www.djangoproject.com" target="_blank"
+            ><strong>Django</strong></a
+          >
+          backend development, where I implemented several API endpoints,
+          utilized
+          <a href="https://www.postgresql.org" target="_blank"
+            ><strong>PostgreSQL</strong></a
+          >
+          for data management, and refactored code to optimize performance. This
+          seamless integration of front-end and back-end systems played an
+          important role in delivering a sleek product. <br /><br />
+          This project helped me hone my skills across both design and
+          full-stack development.
+        </p>
+        <div class="scroll-out">
+          <ul class="scroll-in flex flex-wrap gap-2">
+            <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+              Typescript
+            </li>
+            <li class="text-sm rounded-md bg-slate-200 px-2 py-1">Next.JS</li>
+            <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+              TailwindCSS
+            </li>
+            <li class="text-sm rounded-md bg-slate-200 px-2 py-1">Figma</li>
+            <li class="text-sm rounded-md bg-slate-200 px-2 py-1">Django</li>
+            <li class="text-sm rounded-md bg-slate-200 px-2 py-1">
+              PostgreSQL
+            </li>
+            <li class="text-sm rounded-md bg-slate-200 px-2 py-1">Vercel</li>
+            <li class="text-sm rounded-md bg-slate-200 px-2 py-1">Docker</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
